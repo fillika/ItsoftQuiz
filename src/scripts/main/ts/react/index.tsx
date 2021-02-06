@@ -1,28 +1,66 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import store, { TState } from '../store';
+import { Provider, useDispatch } from 'react-redux';
+import store from '../store';
+import Header from './components/header';
+import Body from './components/body';
 
-const title = 'React from TS';
+export type TQuiestion = {
+  id: number;
+  question: string;
+  answers: TAnswer[];
+};
 
-const App: React.FC = () => {
-  const counter = useSelector((state: TState) => state.count);
+export type TAnswer = {
+  text: string;
+  joke: string;
+  point: number;
+  nextQuestionID: number;
+  right: boolean;
+};
+
+type AppType = {
+  url: string;
+};
+
+type TResponse = TQuiestion[];
+
+const App: React.FC<AppType> = ({ url }) => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const start = async (): Promise<void> => {
+      const result = await getQuestions(url);
+      dispatch({ type: 'GET_QUESTION', value: result });
+    };
+
+    start();
+  }, []);
+
   return (
-    <div>
-      {title}
-      <p>Вы кликнули {counter} раз (Typescript)</p>
-      <p>
-        <button onClick={() => dispatch({ type: 'PLUS' })}>Click</button>
-      </p>
+    <div id='colocation-test1' className='quiz js-quiz-test quiz--open'>
+      <div className='quiz__wrapper js-quiz-wrapper is-active'>
+        <Header />
+        <Body />
+      </div>
     </div>
   );
 };
 
+async function getQuestions(url: string): Promise<TResponse | undefined> {
+  return await fetch(url).then(response => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      console.warn(`Fetch error. Status`, response.status);
+      return undefined;
+    }
+  });
+}
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App url='/src/data/colocation.json' />
   </Provider>,
-  document.getElementById('ts-main-react')
+  document.getElementById('ts-react')
 );

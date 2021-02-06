@@ -1,6 +1,12 @@
-@import './variables';
+@import 'variables';
+@import 'prefix';
+@import 'animations';
+@import './blocks/quiz';
 
-.main-scss {
-  display: flex;
-  flex-direction: column;
+* {
+  box-sizing: border-box;
+}
+
+li {
+  margin-bottom: 15px;
 }

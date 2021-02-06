@@ -1,3 +1,5 @@
-.css-main {
-  display: none;
+:root {
+  --color-pink: #fcdcd3;
+  --main-orange-color: #F05023;
+  --main-blue-color: #0C5A98;
 }
