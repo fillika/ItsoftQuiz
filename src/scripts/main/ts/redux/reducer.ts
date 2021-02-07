@@ -1,31 +1,33 @@
 import { TQuiestion } from '../react';
 
 export const RELOAD_TEST = 'RELOAD_TEST',
+  CHANGE_STAGE = 'CHANGE_STAGE',
   SHOW_RESULT = 'SHOW_RESULT';
 
 export type TState = {
   result: number;
-  questons: TQuiestion[];
+  questions: TQuiestion[];
   results: [];
   currentQuestionId: number;
   nextQuestionID: number;
   selected: boolean;
-  showResult: boolean;
+  stage: 'congratulation' |'result' | 'socialMedia' | null;
 };
 
 type TAction = {
   type: string;
   value?: any;
+  stage?: 'congratulation' |'result' | 'socialMedia' | null;
 };
 
 const initialState: TState = {
   result: 0,
-  questons: [],
+  questions: [],
   results: [],
   currentQuestionId: 1,
   nextQuestionID: 1,
   selected: false,
-  showResult: false,
+  stage: null,
 };
 
 export default function reducer(state: TState = initialState, action: TAction): any {
@@ -33,7 +35,7 @@ export default function reducer(state: TState = initialState, action: TAction): 
     case 'GET_QUESTION':
       return {
         ...state,
-        questons: action.value.questons,
+        questions: action.value.questions,
         results: action.value.results,
       };
     case 'CHANGE_SELECTED':
@@ -41,10 +43,16 @@ export default function reducer(state: TState = initialState, action: TAction): 
         ...state,
         selected: action.value,
       };
+    case CHANGE_STAGE:
+      return {
+        ...state,
+        stage: action.stage,
+      };
     case 'NEXT_QUESTION':
       return {
         ...state,
         currentQuestionId: state.nextQuestionID,
+        selected: false,
       };
     case 'SET_NEXT_QUESTION_ID':
       return {
@@ -56,11 +64,6 @@ export default function reducer(state: TState = initialState, action: TAction): 
         ...state,
         result: state.result + action.value,
       };
-    case SHOW_RESULT:
-      return {
-        ...state,
-        showResult: true,
-      };
     case RELOAD_TEST:
       return {
         ...state,
@@ -68,7 +71,7 @@ export default function reducer(state: TState = initialState, action: TAction): 
         nextQuestionID: 1,
         selected: false,
         result: 0,
-        showResult: false,
+        stage: null
       };
     default:
       return state;

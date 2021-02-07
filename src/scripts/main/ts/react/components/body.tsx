@@ -1,73 +1,43 @@
 import React, { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { TState } from '../../redux/reducer';
-import AnswerItem from './answerItem';
 import CongratsComponent from './conrgatsComponent';
+import QuestionComponent from './questionComponent';
 import Result from './result';
+import ShareInSocialMedia from './shareInSocialMedia';
 
 const Body: FC = () => {
-  const { questons, currentQuestionId, selected, showResult } = useSelector((state: TState) => state);
-  /**
-   * Отдельно создать в state переменную для анимации, не ориентируясь на select
-   */
-  const bodyClassName = !selected
-    ? 'quiz-question quiz-question--active animate'
-    : 'quiz-question quiz-question--active';
-
-  const dispatch = useDispatch();
-
-  function renderQuestion() {
-    const currentQuestion = questons.filter(({ id }) => id === currentQuestionId);
-
-    /**
-     * Если у нас кончились вопросы
-     */
-
-    if (showResult) {
-      return <Result />;
-    } else if (currentQuestionId > questons.length) {
-      return <CongratsComponent />;
-    } else {
-      const [q] = currentQuestion;
-      const { question, answers } = q;
-
-      return (
-        <div className={bodyClassName}>
-          <header className='quiz-body__header'>
-            <p className='quiz-body__question-number'>
-              Вопрос {currentQuestionId} из {questons.length}
-            </p>
-            <p className='quiz__question'>{question}</p>
-          </header>
-
-          <div className='quiz-body__answer-container'>
-            <ul className='quiz-body__answers-list'>
-              {answers.map((answer, index) => (
-                <AnswerItem {...answer} key={index} />
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <button
-              onClick={() => {
-                if (selected) {
-                  dispatch({ type: 'CHANGE_SELECTED', value: false });
-                  dispatch({ type: 'NEXT_QUESTION' });
-                }
-              }}
-              className='order-button quiz__order-button'>
-              Дальше
-            </button>
-          </div>
-        </div>
-      );
-    }
-  }
-
-  const render = renderQuestion();
+  const state = useSelector((state: TState) => state);
+  const render = renderQuestion(state);
 
   return <div className='quiz-body'>{render}</div>;
 };
 
 export default Body;
+
+/**
+ * TODO: Затипизировать DISPATCH
+ */
+function renderQuestion(state: TState) {
+  const { questions, currentQuestionId, stage } = state;
+  const currentQuestion = questions.filter(({ id }) => id === currentQuestionId);
+
+  /**
+   * Отдельно создать в state переменную для анимации, не ориентируясь на select
+   */
+
+  switch (stage) {
+    case 'congratulation':
+      return <CongratsComponent />;
+    case 'result':
+      return <Result />;
+    case 'socialMedia':
+      return <ShareInSocialMedia />;
+    default:
+      if (currentQuestion.length) {
+        const { question, answers } = currentQuestion[0];
+
+        return <QuestionComponent question={question} answers={answers} />;
+      }
+  }
+}

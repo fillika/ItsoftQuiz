@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import { RELOAD_TEST } from '../../redux/reducer';
+import { CHANGE_STAGE, RELOAD_TEST } from '../../redux/reducer';
 
 const Result: FC = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,10 @@ const Result: FC = () => {
           <button className='order-button quiz__order-button'>Связаться с нами</button>
         </div>
         <div>
-          <a href='#' className='quiz-link quiz-link--share'>
+          <a
+            onClick={() => dispatch({ type: CHANGE_STAGE, stage: 'socialMedia' })}
+            href='#'
+            className='quiz-link quiz-link--share'>
             Хотите поделиться результатами?
           </a>
         </div>

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import { SHOW_RESULT } from '../../redux/reducer';
+import { CHANGE_STAGE } from '../../redux/reducer';
 
 const CongratsComponent: FC = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const CongratsComponent: FC = () => {
         </div>
       </div>
       <div>
-        <button onClick={() => dispatch({ type: SHOW_RESULT })} className='order-button quiz__order-button'>
+        <button onClick={() => dispatch({ type: CHANGE_STAGE, stage: 'result' })} className='order-button quiz__order-button'>
           Узнать результаты
         </button>
       </div>
