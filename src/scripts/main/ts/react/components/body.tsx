@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TState } from '../../store';
+import { TState } from '../../redux/reducer';
 import AnswerItem from './answerItem';
+import CongratsComponent from './conrgatsComponent';
+import Result from './result';
 
 const Body: FC = () => {
-  const { questons, currentQuestionId, selected } = useSelector((state: TState) => state);
+  const { questons, currentQuestionId, selected, showResult } = useSelector((state: TState) => state);
   /**
    * Отдельно создать в state переменную для анимации, не ориентируясь на select
    */
@@ -20,20 +22,11 @@ const Body: FC = () => {
     /**
      * Если у нас кончились вопросы
      */
-    if (currentQuestionId > questons.length) {
-      return (
-        <div className='quiz-body__answer-container'>
-          <div className='quiz__final-msg'>
-            <h2>Отлично, вы&nbsp;прошли тест!</h2>
-            <div className='quiz__final-msg-image'>
-              <img src='/template/img/superman-small.png' alt='superman-small' />
-            </div>
-          </div>
-          <div>
-            <button className='order-button quiz__order-button'>Узнать результаты</button>
-          </div>
-        </div>
-      );
+
+    if (showResult) {
+      return <Result />;
+    } else if (currentQuestionId > questons.length) {
+      return <CongratsComponent />;
     } else {
       const [q] = currentQuestion;
       const { question, answers } = q;

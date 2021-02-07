@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const testFolder = path.resolve(__dirname, './src/entryPoints/');
 const entry = {};
@@ -19,24 +20,12 @@ fs.readdirSync(testFolder).forEach(file => {
   }
 });
 
-const optimization = {
-  /**
-   * По умолчанию webpack сжимал JS, так как 5 версия имеет встроенный terser.
-   * Но так как Я для CSS установил Minimizer, то мой JS перестал сжиматься.
-   * Из-за этого пришлось по новой установить terser
-   */
-  minimize: true,
-  minimizer: [
-    new CssMinimizerPlugin(),
-    new TerserPlugin()
-  ],
-}
-
 module.exports = {
   entry: entry,
   output: {
     path: isDev ? path.resolve(__dirname, './dist/dev/') : path.resolve(__dirname, './dist/build/'),
     filename: isDev ? '[name]/dev.[name].min.js' : '[name]/build.[name].min.js',
+    pathinfo: false
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
@@ -46,6 +35,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name]/[name].min.css',
     }),
+    new ForkTsCheckerWebpackPlugin()
   ],
   module: {
     rules: [
@@ -56,7 +46,15 @@ module.exports = {
       },
       {
         test: /\.(ts|tsx)$/,
-        use: 'ts-loader',
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              experimentalWatchApi: true,
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
       {
@@ -70,6 +68,15 @@ module.exports = {
       },
     ],
   },
-  devtool: 'source-map',
-  optimization: isDev ? {} : optimization,
+  devtool: isDev ? 'source-map' : false,
+  optimization: {
+    minimize: isDev ? false : true,
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: false,
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new TerserPlugin()
+    ],
+  }
 };

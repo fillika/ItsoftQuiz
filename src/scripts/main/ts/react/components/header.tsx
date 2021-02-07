@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
+import { RELOAD_TEST } from './../../redux/reducer';
 
 const Header: FC = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const Header: FC = () => {
         Разбираетесь&nbsp;ли вы&nbsp;в&nbsp;дата-центрах? <br /> Давайте проверим!
       </h2>
       <button
-        onClick={() => dispatch({ type: 'CLOSE_QUESTION' })}
+        onClick={() => dispatch({ type: RELOAD_TEST })}
         className='btn-solid btn-solid--orange quiz__head-button js-quiz-start-button'></button>
     </div>
   );

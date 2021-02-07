@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TState } from '../../store';
+import { TState } from '../../redux/reducer';
 import { TAnswer } from './../index';
 
 const AnswerItem: FC<TAnswer> = ({ text, joke, point, nextQuestionID, right }) => {
