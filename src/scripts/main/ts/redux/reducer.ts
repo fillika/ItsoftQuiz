@@ -12,7 +12,8 @@ export type TState = {
   nextQuestionID: number;
   selected: boolean;
   stage: 'congratulation' | 'result' | 'socialMedia' | null;
-  bodyRef: any;
+  testIsHide: boolean;
+  resultCB: null | ((result: number) => string) ;
 };
 
 type TAction = {
@@ -29,7 +30,8 @@ const initialState: TState = {
   nextQuestionID: 1,
   selected: false,
   stage: null,
-  bodyRef: null,
+  testIsHide: true,
+  resultCB: null,
 };
 
 export default function reducer(state: TState = initialState, action: TAction): any {
@@ -37,8 +39,13 @@ export default function reducer(state: TState = initialState, action: TAction): 
     case 'GET_QUESTION':
       return {
         ...state,
-        questions: action.value.questions,
-        results: action.value.results,
+        questions: action.value ? action.value.questions : [],
+        results: action.value ? action.value.results : [],
+      };
+    case 'SET_RESULT_CB':
+      return {
+        ...state,
+        resultCB: action.value
       };
     case 'CHANGE_SELECTED':
       return {
@@ -74,11 +81,7 @@ export default function reducer(state: TState = initialState, action: TAction): 
         selected: false,
         result: 0,
         stage: null,
-      };
-    case 'SET_BODY_REF':
-      return {
-        ...state,
-        bodyRef: action.value
+        testIsHide: action.value,
       };
     default:
       return state;

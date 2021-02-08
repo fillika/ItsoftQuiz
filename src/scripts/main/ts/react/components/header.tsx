@@ -5,8 +5,8 @@ import { TState } from '../../redux/reducer';
 
 const Header: FC = () => {
   const dispatch = useDispatch();
-  const budyEl = useSelector((state: TState) => state.bodyRef);
-  const [isHide, setIsHide] = useState(false);
+  // const budyEl = useSelector((state: TState) => state.bodyRef);
+  const { testIsHide } = useSelector((state: TState) => state);
 
   return (
     <div className='quiz__head-title'>
@@ -15,10 +15,10 @@ const Header: FC = () => {
       </h2>
       <button
         onClick={() => {
-          dispatch({ type: RELOAD_TEST });
+          dispatch({ type: RELOAD_TEST, value: !testIsHide });
 
-          calcHeight(budyEl.current, isHide);
-          setIsHide(!isHide)
+          // calcHeight(budyEl.current, isHide);
+          // setIsHide(!isHide)
         }}
         className='btn-solid btn-solid--orange quiz__head-button js-quiz-start-button'></button>
     </div>
@@ -27,7 +27,7 @@ const Header: FC = () => {
 
 export default Header;
 
-function calcHeight(bodyEl: HTMLElement, isHide:boolean) {
+function calcHeight(bodyEl: HTMLElement, isHide: boolean) {
   const bodyElParams = bodyEl.getBoundingClientRect();
   const duration = 250;
   const height = 536;
@@ -40,9 +40,7 @@ function calcHeight(bodyEl: HTMLElement, isHide:boolean) {
 
     let progress = timing(timeFraction);
 
-    
     !isHide ? slideUp(progress) : slideDown(progress);
-   
 
     if (timeFraction < 1) {
       requestAnimationFrame(animate);
@@ -61,7 +59,7 @@ function calcHeight(bodyEl: HTMLElement, isHide:boolean) {
   }
 
   function slideDown(progress: number) {
-    bodyEl.style.visibility = `visible`
+    bodyEl.style.visibility = `visible`;
     const styleHeight = height * progress;
     bodyEl.style.height = `${styleHeight}px`;
   }
