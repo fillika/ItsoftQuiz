@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
+import React, { FC, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { TState } from '../../redux/reducer';
 import CongratsComponent from './conrgatsComponent';
 import QuestionComponent from './questionComponent';
@@ -7,10 +7,20 @@ import Result from './result';
 import ShareInSocialMedia from './shareInSocialMedia';
 
 const Body: FC = () => {
+  const bodyRef = useRef(null);
+  const dispatch = useDispatch();
   const state = useSelector((state: TState) => state);
   const render = renderQuestion(state);
 
-  return <div className='quiz-body'>{render}</div>;
+  useEffect(() => {
+    dispatch({ type: 'SET_BODY_REF', value: bodyRef });
+  }, []);
+
+  return (
+    <div ref={bodyRef} className='quiz-body'>
+      {render}
+    </div>
+  );
 };
 
 export default Body;

@@ -11,13 +11,14 @@ export type TState = {
   currentQuestionId: number;
   nextQuestionID: number;
   selected: boolean;
-  stage: 'congratulation' |'result' | 'socialMedia' | null;
+  stage: 'congratulation' | 'result' | 'socialMedia' | null;
+  bodyRef: any;
 };
 
 type TAction = {
   type: string;
   value?: any;
-  stage?: 'congratulation' |'result' | 'socialMedia' | null;
+  stage?: 'congratulation' | 'result' | 'socialMedia' | null;
 };
 
 const initialState: TState = {
@@ -28,6 +29,7 @@ const initialState: TState = {
   nextQuestionID: 1,
   selected: false,
   stage: null,
+  bodyRef: null,
 };
 
 export default function reducer(state: TState = initialState, action: TAction): any {
@@ -71,7 +73,12 @@ export default function reducer(state: TState = initialState, action: TAction): 
         nextQuestionID: 1,
         selected: false,
         result: 0,
-        stage: null
+        stage: null,
+      };
+    case 'SET_BODY_REF':
+      return {
+        ...state,
+        bodyRef: action.value
       };
     default:
       return state;

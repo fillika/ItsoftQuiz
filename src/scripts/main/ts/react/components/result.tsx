@@ -16,7 +16,7 @@ const Result: FC = () => {
           не забывайте про стоимость аренды ОС...
         </div>
         <div>
-          <button className='order-button quiz__order-button'>Связаться с нами</button>
+          <button className='order-button quiz__order-button js-fill-order-form'>Связаться с нами</button>
         </div>
         <div>
           <a
