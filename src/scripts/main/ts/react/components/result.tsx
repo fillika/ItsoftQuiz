@@ -4,7 +4,7 @@ import { CHANGE_STAGE, RELOAD_TEST, TState } from '../../redux/reducer';
 
 const Result: FC = () => {
   const dispatch = useDispatch();
-  const { result, resultCB } = useSelector((state: TState) => state);
+  const { result, resultCB, resultName } = useSelector((state: TState) => state);
 
   return (
     <div className='animate'>
@@ -14,7 +14,7 @@ const Result: FC = () => {
       <div className='quiz-body__answer-container quiz-body__answer-container--result'>
         <div
           className='quiz-body__result quiz-body__result--no-max-height js-quiz-result'
-          dangerouslySetInnerHTML={{ __html: resultCB!(result) }}
+          dangerouslySetInnerHTML={{ __html: resultCB!(result, resultName) }}
         />
 
         <div>

@@ -39,14 +39,6 @@
   outline: none;
 }
 
-.quiz--close .quiz__head-button:before {
-  content: 'Пройти тест';
-}
-
-.quiz--open .quiz__head-button:before {
-  content: 'Закрыть тест';
-}
-
 .quiz--close .quiz-body {
   max-height: 0;
   padding: 0 1.5em;

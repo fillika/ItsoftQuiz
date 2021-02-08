@@ -4,6 +4,7 @@ export type TQuiestion = {
   id: number;
   question: string;
   answers: TAnswer[];
+  resultName?: string;
 };
 
 export type TAnswer = {
@@ -24,6 +25,11 @@ const testsArray = [
     url: '/src/data/colocation.json',
     selector: '#colocation-test1',
     resultCb: showResultDataCenters,
+  },
+  {
+    url: '/src/data/tarif.json',
+    selector: '#test_2',
+    resultCb: showResultTarif,
   },
 ];
 
@@ -60,4 +66,36 @@ function showResultDataCenters(result: number) {
   }
 
   return message;
+}
+
+function showResultTarif(result: number, branch: string | undefined): string {
+  let message;
+
+  switch (branch) {
+    case 'first':
+      if (result === 1) {
+        message =
+          'Windows - довольно требовательная к ресурсам ОС, рекомендуем Виртуальный сервер 2/2/48 HDD за 1300 руб./мес. и не забывайте про стоимость аренды ОС...';
+      } else {
+        message =
+          'Современные ОС на Linux довольно требовательные, например, для  Centos 8 или выше мы рекомендуем Виртуальный сервер 2/2/48 HDD за 1300 руб./мес., но можно установить Centos 7 и взять Виртуальный сервер 1/1/32 HDD за 650 руб./мес., решать вам!';
+      }
+      return message;
+    case 'second':
+      if (result <= 3) {
+        message = 'Рекомендуем тариф Cloud Standart за 950 руб./мес.';
+      } else if (result >= 4 && result <= 5) {
+        message = 'Рекомендуем тариф Cloud Optimal за 1 900 руб./мес.';
+      } else if (result >= 6 && result <= 10) {
+        message = 'Рекомендуем тариф Cloud Maximum за 2 800 руб./мес.';
+      } else {
+        message =
+          'Рекомендуем рассмотреть аренду физического сервера, с тарифами вы можете ознакомиться <a href="/data-center/dedicated/" target="_blank">тут</a>. Но если Виртуальный сервер принципиален - попробуйте тариф Cloud Ultra за 5 600 руб./мес';
+      }
+      return message;
+
+    default:
+      return '';
+  }
+  return '';
 }

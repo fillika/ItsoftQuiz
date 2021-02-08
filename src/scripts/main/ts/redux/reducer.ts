@@ -2,6 +2,8 @@ import { TQuiestion } from '../react';
 
 export const RELOAD_TEST = 'RELOAD_TEST',
   CHANGE_STAGE = 'CHANGE_STAGE',
+  LOAD_NEW_QUESTIONS = 'LOAD_NEW_QUESTIONS',
+  SET_RESULT_NAME = 'SET_RESULT_NAME',
   SHOW_RESULT = 'SHOW_RESULT';
 
 export type TState = {
@@ -13,7 +15,8 @@ export type TState = {
   selected: boolean;
   stage: 'congratulation' | 'result' | 'socialMedia' | null;
   testIsHide: boolean;
-  resultCB: null | ((result: number) => string) ;
+  resultCB: null | ((result: number) => string);
+  resultName?: string | undefined;
 };
 
 type TAction = {
@@ -32,6 +35,7 @@ const initialState: TState = {
   stage: null,
   testIsHide: true,
   resultCB: null,
+  resultName: undefined,
 };
 
 export default function reducer(state: TState = initialState, action: TAction): any {
@@ -42,10 +46,21 @@ export default function reducer(state: TState = initialState, action: TAction): 
         questions: action.value ? action.value.questions : [],
         title: action.value ? action.value.title : '',
       };
+    case LOAD_NEW_QUESTIONS:
+      return {
+        ...state,
+        questions: action.value,
+        nextQuestionID: 2
+      };
+    case SET_RESULT_NAME:
+      return {
+        ...state,
+        resultName: action.value
+      };
     case 'SET_RESULT_CB':
       return {
         ...state,
-        resultCB: action.value
+        resultCB: action.value,
       };
     case 'CHANGE_SELECTED':
       return {

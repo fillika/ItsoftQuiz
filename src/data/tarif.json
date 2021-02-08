@@ -1,0 +1,91 @@
+{
+  "title": "Какой тариф VDS выбрать?",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Для чего вам нужен виртуальный сервер?",
+      "answers": [
+        {
+          "text": "Хочу попробовать, никогда не&nbsp;пользовался",
+          "joke": "Надеемся, вы&nbsp;не&nbsp;разочаруетесь!",
+          "point": 1,
+          "nextQuestionID": 100,
+          "right": true
+        },
+        {
+          "text": "Нужен хостинг для сайта",
+          "joke": "Круто! Таких у&nbsp;нас много и&nbsp;есть специализированная поддержка ;)",
+          "point": 1,
+          "nextQuestionID": 200,
+          "right": true
+        },
+        {
+          "text": "Требуется удаленное рабочее место, например для бухгалтера",
+          "joke": "Кажется, вам потребуется Виртуальный сервер с&nbsp;Windows...",
+          "point": 1,
+          "nextQuestionID": 2,
+          "right": true
+        },
+        {
+          "text": "Нужен VPN или прокси-сервер",
+          "joke": "А почему бы и нет?",
+          "point": 1,
+          "nextQuestionID": 2,
+          "right": true
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "question": [
+        {
+          "id": 2,
+          "question": "Какую ОС установить?",
+          "answers": [
+            {
+              "text": "Windows",
+              "joke": "Так будет дороже, но привычнее.",
+              "point": 0,
+              "nextQuestionID": 3,
+              "right": true
+            },
+            {
+              "text": "Linux",
+              "joke": "То что нужно ;)",
+              "point": 1,
+              "nextQuestionID": 3,
+              "right": true
+            }
+          ],
+          "resultName": "first"
+        }
+      ]
+    },
+    {
+      "id": 200,
+      "question": [
+        {
+          "id": 2,
+          "question": "Тестовый вопрос - ветка 2",
+          "answers": [
+            {
+              "text": "Windows",
+              "joke": "Так будет дороже, но привычнее.",
+              "point": 0,
+              "nextQuestionID": 3,
+              "right": true
+            },
+            {
+              "text": "Linux",
+              "joke": "То что нужно ;)",
+              "point": 1,
+              "nextQuestionID": 3,
+              "right": true
+            }
+          ],
+          "resultName": "second"
+        }
+      ]
+    }
+  ]
+}

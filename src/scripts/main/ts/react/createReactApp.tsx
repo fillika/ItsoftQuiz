@@ -4,7 +4,7 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 import customCreateStore from '../store';
 import Header from './components/header';
 import Body from './components/body';
-import { TState } from '../redux/reducer';
+import { RELOAD_TEST, TState } from '../redux/reducer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TQuiestion } from '.';
 
@@ -14,10 +14,16 @@ type AppType = {
 
 type TResponse = TQuiestion[];
 
-export default function createReactApp(url: string, element: HTMLElement | null, resultCb: (result: number) => string) {
+export default function createReactApp(
+  url: string,
+  element: HTMLElement | null,
+  resultCb: (result: number, branch?: string | undefined) => string
+) {
   const store = customCreateStore();
 
   if (!element) return;
+
+  const showTest = element.getAttribute('data-show');
 
   const App: React.FC<AppType> = ({ url }) => {
     const { testIsHide, questions } = useSelector((state: TState) => state);
@@ -28,6 +34,10 @@ export default function createReactApp(url: string, element: HTMLElement | null,
         const result = await getQuestions(url);
         dispatch({ type: 'GET_QUESTION', value: result });
         dispatch({ type: 'SET_RESULT_CB', value: resultCb });
+
+        if (showTest) {
+          dispatch({ type: RELOAD_TEST, value: false });
+        }
       };
 
       start();
@@ -42,7 +52,7 @@ export default function createReactApp(url: string, element: HTMLElement | null,
         <div className='quiz__wrapper js-quiz-wrapper is-active'>
           <Header />
           <AnimatePresence initial={false}>
-            {testIsHide && (
+            {!testIsHide && (
               <motion.section
                 key='content'
                 initial='collapsed'

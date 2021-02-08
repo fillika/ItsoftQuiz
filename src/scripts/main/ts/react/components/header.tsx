@@ -15,7 +15,13 @@ const Header: FC = () => {
         onClick={() => {
           dispatch({ type: RELOAD_TEST, value: !testIsHide });
         }}
-        className='btn-solid btn-solid--orange quiz__head-button js-quiz-start-button'></button>
+        className='btn-solid btn-solid--orange quiz__head-button js-quiz-start-button'>
+          {
+            testIsHide
+              ? 'Пройти тест'
+              : 'Закрыть тест'
+          }
+        </button>
     </div>
   );
 };

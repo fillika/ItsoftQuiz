@@ -19,6 +19,9 @@ function renderQuestion(state: TState) {
   const { questions, currentQuestionId, stage } = state;
   const currentQuestion = questions.filter(({ id }) => id === currentQuestionId);
 
+  console.log(currentQuestion);
+  
+
   /**
    * Отдельно создать в state переменную для анимации, не ориентируясь на select
    */
@@ -32,9 +35,9 @@ function renderQuestion(state: TState) {
       return <ShareInSocialMedia />;
     default:
       if (currentQuestion.length) {
-        const { question, answers } = currentQuestion[0];
+        const { question, answers, resultName } = currentQuestion[0];
 
-        return <QuestionComponent question={question} answers={answers} />;
+        return <QuestionComponent resultName={resultName} question={question} answers={answers} />;
       }
   }
 }
