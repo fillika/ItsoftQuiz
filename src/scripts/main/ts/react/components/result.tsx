@@ -12,9 +12,11 @@ const Result: FC = () => {
         <p className='quiz__question'>Ваш результат:</p>
       </header>
       <div className='quiz-body__answer-container quiz-body__answer-container--result'>
-        <div className='quiz-body__result quiz-body__result--no-max-height js-quiz-result'>
-          {resultCB && resultCB(result)}
-        </div>
+        <div
+          className='quiz-body__result quiz-body__result--no-max-height js-quiz-result'
+          dangerouslySetInnerHTML={{ __html: resultCB!(result) }}
+        />
+
         <div>
           <button className='order-button quiz__order-button js-fill-order-form'>Связаться с нами</button>
         </div>

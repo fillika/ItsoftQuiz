@@ -6,8 +6,8 @@ export const RELOAD_TEST = 'RELOAD_TEST',
 
 export type TState = {
   result: number;
+  title: string;
   questions: TQuiestion[];
-  results: [];
   currentQuestionId: number;
   nextQuestionID: number;
   selected: boolean;
@@ -24,8 +24,8 @@ type TAction = {
 
 const initialState: TState = {
   result: 0,
+  title: '',
   questions: [],
-  results: [],
   currentQuestionId: 1,
   nextQuestionID: 1,
   selected: false,
@@ -40,7 +40,7 @@ export default function reducer(state: TState = initialState, action: TAction): 
       return {
         ...state,
         questions: action.value ? action.value.questions : [],
-        results: action.value ? action.value.results : [],
+        title: action.value ? action.value.title : '',
       };
     case 'SET_RESULT_CB':
       return {

@@ -1,4 +1,5 @@
 {
+  "title": "Разбираетесь&nbsp;ли вы&nbsp;в&nbsp;дата-центрах? <br /> Давайте проверим!",
   "questions": [
     {
       "id": 1,
@@ -101,17 +102,278 @@
           "right": false
         }
       ]
-    }
-  ],
-  "results": [
-    {
-      "bad": "Увы, вы плохо знакомы с устройством дата-центров. Рекомендуем <a href='/data-center/nord4/#it_message' target='_blank'>записаться</a> к нам на экскурсию, расскажем это и многое другое!"
     },
     {
-      "good": "Вы уже что-то знаете, но далеко не все! Узнать больше информации можно у нас на <a href='/data-center/nord4/' target='_blank'>сайте</a> или <a href='/data-center/nord4/#it_message' target='_blank'>записавшись</a> на экскурсию."
+      "id": 4,
+      "question": "Для чего нужен ИБП?",
+      "answers": [
+        {
+          "text": "Накапливают остатки электричества, позволяя экономить",
+          "joke": "Нет, на&nbsp;дата-центрах не&nbsp;экономят!",
+          "point": 0,
+          "nextQuestionID": 5,
+          "right": false
+        },
+        {
+          "text": "Питают весь дата-центр пока питание переключается на&nbsp;ДГУ",
+          "joke": "Верно! К&nbsp;счатью, на&nbsp;старт ДГУ требуется менее минуты",
+          "point": 1,
+          "nextQuestionID": 5,
+          "right": true
+        },
+        {
+          "text": "Выравнивают электрический ток, чтобы не&nbsp;было перебоев",
+          "joke": "Нет, вы&nbsp;что-то напутали",
+          "point": 0,
+          "nextQuestionID": 5,
+          "right": false
+        },
+        {
+          "text": "Нужны для старта ДГУ",
+          "joke": "Нет. Кстати, ДГУ не&nbsp;выключаются, они всегда «на&nbsp;низком старте»",
+          "point": 0,
+          "nextQuestionID": 5,
+          "right": false
+        }
+      ]
     },
     {
-      "excellent": "Вы отлично знакомы с дата-центрами! А значит, вы поняли, что у нас есть все необходимое. Ждем <a href='/data-center/colocation/#order' target='_blank'>заявку</a>!"
+      "id": 5,
+      "question": "Отправимся к&nbsp;машинным залам. Знаете почему их&nbsp;называют «саркофаги»?",
+      "answers": [
+        {
+          "text": "Там точно есть захоронения!",
+          "joke": "Нет, мы&nbsp;проверяли",
+          "point": 0,
+          "nextQuestionID": 6,
+          "right": false
+        },
+        {
+          "text": "Там тоже прохладно",
+          "joke": "Нет, но&nbsp;логика в&nbsp;этом есть",
+          "point": 0,
+          "nextQuestionID": 6,
+          "right": false
+        },
+        {
+          "text": "Их&nbsp;придумали в&nbsp;Древнем Египте",
+          "joke": "Кто знает... но&nbsp;у&nbsp;нас такой информации нет",
+          "point": 0,
+          "nextQuestionID": 6,
+          "right": false
+        },
+        {
+          "text": "Они изолированы от&nbsp;внешних помещений дата-центра",
+          "joke": "Верно! Это обеспечивает дополнительную безопасность",
+          "point": 1,
+          "nextQuestionID": 6,
+          "right": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Чтобы вы&nbsp;не&nbsp;вошли туда, куда вам нельзя входить",
+      "answers": [
+        {
+          "text": "Чтобы вы&nbsp;не&nbsp;вошли туда, куда вам нельзя входить",
+          "joke": "Верно! СКУД можно установить даже на&nbsp;вашу стойку",
+          "point": 1,
+          "nextQuestionID": 7,
+          "right": true
+        },
+        {
+          "text": "Все двери открываются только охранником",
+          "joke": "Они так могут, но&nbsp;быстро устанут",
+          "point": 0,
+          "nextQuestionID": 7,
+          "right": false
+        },
+        {
+          "text": "Открытие дверей по&nbsp;карточкам это современно и&nbsp;круто",
+          "joke": "Безусловно, но&nbsp;мы&nbsp;за&nbsp;полезные технологии",
+          "point": 0,
+          "nextQuestionID": 7,
+          "right": false
+        },
+        {
+          "text": "Чтобы вы&nbsp;подольше оставались в&nbsp;гостях ;)",
+          "joke": "В&nbsp;гостях хорошо, а&nbsp;дома лучше!",
+          "point": 0,
+          "nextQuestionID": 7,
+          "right": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "Вы&nbsp;вошли в&nbsp;машинный зал и&nbsp;там очень шумно, почему так?",
+      "answers": [
+        {
+          "text": "Хитрая система безопасности&nbsp;— чтобы охранники вас не&nbsp;подслушивали",
+          "joke": "Нет, им&nbsp;и&nbsp;так не&nbsp;интересно",
+          "point": 0,
+          "nextQuestionID": 8,
+          "right": false
+        },
+        {
+          "text": "В&nbsp;зале много электричества, это фон!",
+          "joke": "Нет, но&nbsp;шапочку из&nbsp;фольги прихватите",
+          "point": 0,
+          "nextQuestionID": 8,
+          "right": false
+        },
+        {
+          "text": "Кондиционеры большие и&nbsp;мощные, они виноваты",
+          "joke": "Отчасти вы&nbsp;правы, но&nbsp;не&nbsp;совсем",
+          "point": 0,
+          "nextQuestionID": 8,
+          "right": false
+        },
+        {
+          "text": "В&nbsp;зале много серверов, очень много серверов!",
+          "joke": "Верно! Одна из&nbsp;немногих причин не&nbsp;держать их&nbsp;в&nbsp;офисе",
+          "point": 1,
+          "nextQuestionID": 8,
+          "right": true
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "С&nbsp;шумом определились, а&nbsp;догадаетесь почему в&nbsp;машинном зале не&nbsp;рекомендуется работать в&nbsp;наушниках?",
+      "answers": [
+        {
+          "text": "Снижается производительность труда",
+          "joke": "Нет, определенно нет...",
+          "point": 0,
+          "nextQuestionID": 9,
+          "right": false
+        },
+        {
+          "text": "Вы&nbsp;можете не&nbsp;услышать системные звуки сервера",
+          "joke": "Да, но&nbsp;вы&nbsp;и&nbsp;так их&nbsp;скорее всего упустите из&nbsp;виду",
+          "point": 0,
+          "nextQuestionID": 9,
+          "right": false
+        },
+        {
+          "text": "Можно пропустить оповещение пожарной сигнализации",
+          "joke": "Верно! Это важный момент!",
+          "point": 1,
+          "nextQuestionID": 9,
+          "right": true
+        },
+        {
+          "text": "Большие наушники закрывают часть головы, охрана не&nbsp;узнает вас в&nbsp;камеру",
+          "joke": "Нет, узнает, не&nbsp;переживайте за&nbsp;это",
+          "point": 0,
+          "nextQuestionID": 9,
+          "right": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Под вашими ногами в&nbsp;машинном зале фальшпол, знаете его предназначение?",
+      "answers": [
+        {
+          "text": "Там холодный воздух и&nbsp;силовые кабеля",
+          "joke": "Верно! Туда лучше не&nbsp;залезать...",
+          "point": 1,
+          "nextQuestionID": 10,
+          "right": true
+        },
+        {
+          "text": "Пространство используется для коммутации",
+          "joke": "Нет, лотки для коммутации сверху",
+          "point": 0,
+          "nextQuestionID": 10,
+          "right": false
+        },
+        {
+          "text": "Там располагаются системы пожаротушения",
+          "joke": "Как вы&nbsp;себе это представляете?",
+          "point": 0,
+          "nextQuestionID": 10,
+          "right": false
+        },
+        {
+          "text": "Там можно хранить инструмент и&nbsp;прочий ЗИП",
+          "joke": "Можно попробовать, но&nbsp;спасибо вам точно не&nbsp;скажут",
+          "point": 0,
+          "nextQuestionID": 10,
+          "right": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "question": "Как часто проводят тестовый запуск системы пожаротушения?",
+      "answers": [
+        {
+          "text": "Раз в&nbsp;месяц",
+          "joke": "Нет, уж&nbsp;поверьте, вы&nbsp;не&nbsp;обрадуетесь",
+          "point": 0,
+          "nextQuestionID": 11,
+          "right": false
+        },
+        {
+          "text": "Раз в&nbsp;пол года",
+          "joke": "Нет, мы&nbsp;бы заметили",
+          "point": 0,
+          "nextQuestionID": 11,
+          "right": false
+        },
+        {
+          "text": "Раз в&nbsp;год",
+          "joke": "Нет, даже раз в&nbsp;год это часто",
+          "point": 0,
+          "nextQuestionID": 11,
+          "right": false
+        },
+        {
+          "text": "Никогда, если только при проектировании",
+          "joke": "Верно, в&nbsp;силу технологических особенностей",
+          "point": 1,
+          "nextQuestionID": 11,
+          "right": true
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "question": "Как вы&nbsp;думаете, на&nbsp;что реагирует противопожарная система?",
+      "answers": [
+        {
+          "text": "Датчики реагируют на&nbsp;открытое пламя",
+          "joke": "Нет, это уже поздновато",
+          "point": 0,
+          "nextQuestionID": 12,
+          "right": false
+        },
+        {
+          "text": "Датчики реагируют на&nbsp;дым",
+          "joke": "Нет, дыма без огня не&nbsp;бывает...",
+          "point": 0,
+          "nextQuestionID": 12,
+          "right": false
+        },
+        {
+          "text": "Охранники пристально смотрят в&nbsp;камеры",
+          "joke": "Охранники пристально смотрят в&nbsp;камеры",
+          "point": 0,
+          "nextQuestionID": 12,
+          "right": false
+        },
+        {
+          "text": "Датчики анализируют состав воздуха в&nbsp;зале",
+          "joke": "Сложно, но&nbsp;верно!",
+          "point": 1,
+          "nextQuestionID": 12,
+          "right": true
+        }
+      ]
     }
   ]
 }

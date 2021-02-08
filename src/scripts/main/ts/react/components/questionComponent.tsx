@@ -34,7 +34,8 @@ const QuestionComponent: FC<TQuestionComponent> = ({ question, answers }) => {
           <p className='quiz-body__question-number'>
             Вопрос {currentQuestionId} из {questions.length}
           </p>
-          <p className='quiz__question'>{question}</p>
+          
+          <p className='quiz__question' dangerouslySetInnerHTML={{ __html: question }} />
         </header>
 
         <div className='quiz-body__answer-container'>
@@ -43,12 +44,12 @@ const QuestionComponent: FC<TQuestionComponent> = ({ question, answers }) => {
               <AnswerItem {...answer} key={index} />
             ))}
           </ul>
-        </div>
 
-        <div>
-          <button onClick={nextQuestion} className='order-button quiz__order-button'>
-            Дальше
-          </button>
+          <div>
+            <button onClick={nextQuestion} className='order-button quiz__order-button'>
+              Дальше
+            </button>
+          </div>
         </div>
       </div>
     </>
