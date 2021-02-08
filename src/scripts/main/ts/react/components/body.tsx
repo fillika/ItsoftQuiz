@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { TState } from '../../redux/reducer';
 import CongratsComponent from './conrgatsComponent';
 import QuestionComponent from './questionComponent';
@@ -7,27 +7,14 @@ import Result from './result';
 import ShareInSocialMedia from './shareInSocialMedia';
 
 const Body: FC = () => {
-  const bodyRef = useRef(null);
-  const dispatch = useDispatch();
   const state = useSelector((state: TState) => state);
   const render = renderQuestion(state);
 
-  useEffect(() => {
-    dispatch({ type: 'SET_BODY_REF', value: bodyRef });
-  }, []);
-
-  return (
-    <div ref={bodyRef} className='quiz-body'>
-      {render}
-    </div>
-  );
+  return <div className='quiz-body'>{render}</div>;
 };
 
 export default Body;
 
-/**
- * TODO: Затипизировать DISPATCH
- */
 function renderQuestion(state: TState) {
   const { questions, currentQuestionId, stage } = state;
   const currentQuestion = questions.filter(({ id }) => id === currentQuestionId);

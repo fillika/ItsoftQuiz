@@ -1,9 +1,4 @@
-import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { Provider, useDispatch } from 'react-redux';
-import store from '../store';
-import Header from './components/header';
-import Body from './components/body';
+import createReactApp from './createReactApp';
 
 export type TQuiestion = {
   id: number;
@@ -19,48 +14,33 @@ export type TAnswer = {
   right: boolean;
 };
 
-type AppType = {
-  url: string;
-};
+const testsArray = [
+  {
+    url: '/src/data/colocation.json',
+    selector: '#colocation-test1',
+    resultCb: showResultColoOne,
+  },
+  {
+    url: '/src/data/howMuch.json',
+    selector: '#colocation-test2',
+    resultCb: showResultColoOne,
+  },
+];
 
-type TResponse = TQuiestion[];
+testsArray.forEach(({ url, selector, resultCb }) => {
+  createReactApp(url, document.querySelector(selector), resultCb);
+});
 
-const App: React.FC<AppType> = ({ url }) => {
-  const dispatch = useDispatch();
+function showResultColoOne(result: number) {
+  let message;
 
-  useEffect(() => {
-    const start = async (): Promise<void> => {
-      const result = await getQuestions(url);
-      dispatch({ type: 'GET_QUESTION', value: result });
-    };
+  if (result <= 2) {
+    message = 'С Linux вы пока не дружите, рекомендуем вам ОС семейства Windows ;)';
+  } else if (result >= 3 && result <= 6) {
+    message = 'Неплохо! Но недостаточно. Возьмите что-то с визуальным интерфейсом! Например Ubuntu.';
+  } else {
+    message = 'Отлично! Мы рекомендуем Linux с текстовой консолью!';
+  }
 
-    start();
-  }, []);
-
-  return (
-    <div id='colocation-test1' className='quiz js-quiz-test quiz--open'>
-      <div className='quiz__wrapper js-quiz-wrapper is-active'>
-        <Header />
-        <Body />
-      </div>
-    </div>
-  );
-};
-
-async function getQuestions(url: string): Promise<TResponse | undefined> {
-  return await fetch(url).then(response => {
-    if (response.status === 200) {
-      return response.json();
-    } else {
-      console.warn(`Fetch error. Status`, response.status);
-      return undefined;
-    }
-  });
+  return message;
 }
-
-ReactDOM.render(
-  <Provider store={store}>
-    <App url='/src/data/colocation.json' />
-  </Provider>,
-  document.getElementById('ts-react')
-);
