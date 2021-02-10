@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TState } from '../../redux/reducer';
-import { TAnswer } from './../index';
+import { TState } from '../../../redux/reducer';
+import { TAnswer } from './index';
 
 const AnswerItem: FC<TAnswer> = ({ text, joke, point, nextQuestionID, right }) => {
   const { selected } = useSelector((state: TState) => state);

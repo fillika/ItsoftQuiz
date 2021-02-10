@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CHANGE_STAGE, RELOAD_TEST, TState } from '../../redux/reducer';
+import { CHANGE_STAGE, RELOAD_TEST, TState } from '../../../redux/reducer';
 
 const Result: FC = () => {
   const dispatch = useDispatch();
   const { result, resultCB, resultName } = useSelector((state: TState) => state);
+
+  console.log(resultName);
 
   return (
     <div className='animate'>
@@ -30,7 +32,7 @@ const Result: FC = () => {
         </div>
         <div>
           <a
-            onClick={() => dispatch({ type: RELOAD_TEST, value: true })}
+            onClick={() => dispatch({ type: RELOAD_TEST, value: false })}
             href='#'
             className='quiz-link quiz-link--share'>
             Пройти тест заново

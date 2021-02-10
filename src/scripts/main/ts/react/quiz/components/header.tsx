@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RELOAD_TEST } from './../../redux/reducer';
-import { TState } from '../../redux/reducer';
+import { RELOAD_TEST } from '../../../redux/reducer';
+import { TState } from '../../../redux/reducer';
 
 const Header: FC = () => {
   const dispatch = useDispatch();

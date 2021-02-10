@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import { CHANGE_STAGE } from '../../redux/reducer';
+import { CHANGE_STAGE } from '../../../redux/reducer';
 
 const CongratsComponent: FC = () => {
   const dispatch = useDispatch();

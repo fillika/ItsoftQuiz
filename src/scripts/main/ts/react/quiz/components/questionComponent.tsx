@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { TAnswer, TQuiestion } from '..';
-import { CHANGE_STAGE, TState, LOAD_NEW_QUESTIONS, SET_RESULT_NAME } from '../../redux/reducer';
+import { TAnswer, TQuiestion } from '.';
+import { CHANGE_STAGE, TState, LOAD_NEW_QUESTIONS, SET_RESULT_NAME } from '../../../redux/reducer';
 import AnswerItem from './answerItem';
 
 type TQuestionComponent = {

@@ -1,4 +1,4 @@
-import { TQuiestion } from '../react';
+import { TQuiestion } from "../react/quiz/components";
 
 export const RELOAD_TEST = 'RELOAD_TEST',
   CHANGE_STAGE = 'CHANGE_STAGE',
@@ -9,13 +9,14 @@ export const RELOAD_TEST = 'RELOAD_TEST',
 export type TState = {
   result: number;
   title: string;
+  questionsInitial: TQuiestion[];
   questions: TQuiestion[];
   currentQuestionId: number;
   nextQuestionID: number;
   selected: boolean;
   stage: 'congratulation' | 'result' | 'socialMedia' | null;
   testIsHide: boolean;
-  resultCB: null | ((result: number) => string);
+  resultCB: null | ((result: number, resultName?: string | undefined) => string);
   resultName?: string | undefined;
 };
 
@@ -28,6 +29,7 @@ type TAction = {
 const initialState: TState = {
   result: 0,
   title: '',
+  questionsInitial: [],
   questions: [],
   currentQuestionId: 1,
   nextQuestionID: 1,
@@ -43,6 +45,7 @@ export default function reducer(state: TState = initialState, action: TAction): 
     case 'GET_QUESTION':
       return {
         ...state,
+        questionsInitial: action.value ? action.value.questions : [],
         questions: action.value ? action.value.questions : [],
         title: action.value ? action.value.title : '',
       };
@@ -50,7 +53,7 @@ export default function reducer(state: TState = initialState, action: TAction): 
       return {
         ...state,
         questions: action.value,
-        nextQuestionID: 2
+        nextQuestionID: 1
       };
     case SET_RESULT_NAME:
       return {
@@ -91,6 +94,7 @@ export default function reducer(state: TState = initialState, action: TAction): 
     case RELOAD_TEST:
       return {
         ...state,
+        questions: state.questionsInitial,
         currentQuestionId: 1,
         nextQuestionID: 1,
         selected: false,

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import customCreateStore from '../store';
+import customCreateStore from '../../store';
 import Header from './components/header';
 import Body from './components/body';
-import { RELOAD_TEST, TState } from '../redux/reducer';
+import { RELOAD_TEST, TState } from '../../redux/reducer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TQuiestion } from '.';
 

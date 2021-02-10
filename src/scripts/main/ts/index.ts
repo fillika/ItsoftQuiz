@@ -1,1 +1,1 @@
-import './react/index';
+import './react/quiz/components/index';
