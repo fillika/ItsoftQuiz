@@ -1,4 +1,4 @@
-import { TQuiestion } from "../react/quiz/components";
+import { TQuiestion } from "../react/quiz";
 
 export const RELOAD_TEST = 'RELOAD_TEST',
   CHANGE_STAGE = 'CHANGE_STAGE',

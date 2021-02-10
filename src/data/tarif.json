@@ -23,14 +23,14 @@
           "text": "Требуется удаленное рабочее место, например для бухгалтера",
           "joke": "Кажется, вам потребуется Виртуальный сервер с&nbsp;Windows...",
           "point": 1,
-          "nextQuestionID": 2,
+          "nextQuestionID": 300,
           "right": true
         },
         {
           "text": "Нужен VPN или прокси-сервер",
           "joke": "А почему бы и нет?",
           "point": 1,
-          "nextQuestionID": 2,
+          "nextQuestionID": 400,
           "right": true
         }
       ]
@@ -46,14 +46,14 @@
               "text": "Windows",
               "joke": "Так будет дороже, но привычнее.",
               "point": 0,
-              "nextQuestionID": 3,
+              "nextQuestionID": 2,
               "right": true
             },
             {
               "text": "Linux",
               "joke": "То что нужно ;)",
               "point": 1,
-              "nextQuestionID": 3,
+              "nextQuestionID": 2,
               "right": true
             }
           ],
@@ -65,25 +65,213 @@
       "id": 200,
       "question": [
         {
-          "id": 2,
-          "question": "Тестовый вопрос - ветка 2",
+          "id": 1,
+          "question": "На какой CMS работает ваш сайт?",
           "answers": [
             {
-              "text": "Windows",
-              "joke": "Так будет дороже, но привычнее.",
-              "point": 0,
+              "text": "1С-Битрикс",
+              "joke": "Сообщите нам об этом, мы подготовим сервер с Битрикс-окружением",
+              "point": 2,
+              "nextQuestionID": 2,
+              "right": true
+            },
+            {
+              "text": "Wordpress или Joomla",
+              "joke": "Просите Виртуальный сервер без Битрикс-окружения!",
+              "point": 1,
+              "nextQuestionID": 2,
+              "right": true
+            },
+            {
+              "text": "Другая CMS",
+              "joke": "Не сомневаемся, их очень много...",
+              "point": 2,
+              "nextQuestionID": 2,
+              "right": true
+            },
+            {
+              "text": "CMS нету, сайт на html",
+              "joke": "Дешево и сердито, не так ли?",
+              "point": 1,
+              "nextQuestionID": 2,
+              "right": true
+            },
+            {
+              "text": "Не знаю",
+              "joke": "А кто знает? Но продолжим...",
+              "point": 2,
+              "nextQuestionID": 2,
+              "right": true
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Какой у вас сайт?",
+          "answers": [
+            {
+              "text": "Интернет-магазин",
+              "joke": "Чем торгуете?",
+              "point": 4,
               "nextQuestionID": 3,
               "right": true
             },
             {
-              "text": "Linux",
-              "joke": "То что нужно ;)",
+              "text": "Продуктовый сайт",
+              "joke": "Обожаем продукты ;)",
+              "point": 2,
+              "nextQuestionID": 3,
+              "right": true
+            },
+            {
+              "text": "Сайт-визитка компании",
+              "joke": "Правильно, визитки уже давно в интернете",
+              "point": 1,
+              "nextQuestionID": 3,
+              "right": true
+            },
+            {
+              "text": "Новостной сайт",
+              "joke": "Новости, надеемся, правдивые?",
+              "point": 4,
+              "nextQuestionID": 3,
+              "right": true
+            },
+            {
+              "text": "Площадка для личного использования",
+              "joke": "Мы уважаем ваше личное пространство.",
               "point": 1,
               "nextQuestionID": 3,
               "right": true
             }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "Какая посещаемость вашего сайта?",
+          "answers": [
+            {
+              "text": "До 1.000 человек в день",
+              "joke": "А нам больше и не нужно!",
+              "point": 1,
+              "nextQuestionID": 4,
+              "right": true
+            },
+            {
+              "text": "1.000 - 10.000 человек в день",
+              "joke": "А не варастет?",
+              "point": 4,
+              "nextQuestionID": 4,
+              "right": true
+            },
+            {
+              "text": "Более 10.000 человек в день",
+              "joke": "Солидно, хорошие показатели!",
+              "point": 10,
+              "nextQuestionID": 4,
+              "right": true
+            }
           ],
           "resultName": "second"
+        }
+      ]
+    },
+    {
+      "id": 300,
+      "question": [
+        {
+          "id": 1,
+          "question": "Сколько пользователей будет подключаться?",
+          "answers": [
+            {
+              "text": "1-2 пользователей",
+              "joke": "Минимализм это хорошо!",
+              "point": 1,
+              "nextQuestionID": 2,
+              "right": true
+            },
+            {
+              "text": "3-10 пользователей",
+              "joke": "Да это уже команда!",
+              "point": 6,
+              "nextQuestionID": 2,
+              "right": true
+            },
+            {
+              "text": "Более 10 пользователей",
+              "joke": "Вы удивитесь, но это в конце...",
+              "point": 20,
+              "nextQuestionID": 2,
+              "right": true
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Базу mySQL планируете хранить на&nbsp;виртуальном сервере или отдельно?",
+          "answers": [
+            {
+              "text": "На этом виртуальном сервере",
+              "joke": "А кто будет делать бэкапы?",
+              "point": 5,
+              "nextQuestionID": 3,
+              "right": true
+            },
+            {
+              "text": "На другом сервере",
+              "joke": "Надеемся, что он размещен у нас...",
+              "point": 2,
+              "nextQuestionID": 3,
+              "right": true
+            }
+          ],
+          "resultName": "third"
+        }
+      ]
+    },
+    {
+      "id": 400,
+      "question": [
+        {
+          "id": 1,
+          "question": "Сайты из черного списка РКН все еще будут недоступны, продолжаем?",
+          "answers": [
+            {
+              "text": "Да",
+              "joke": "Мы тоже соблюдаем закон.",
+              "point": 1,
+              "nextQuestionID": 2,
+              "right": true
+            },
+            {
+              "text": "Нет",
+              "joke": "Подозрительно, но есть решение, продолжим.",
+              "point": 2,
+              "nextQuestionID": 2,
+              "right": true
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Потребуется помощь в&nbsp;настройке VPN или прокси-сервера?",
+          "answers": [
+            {
+              "text": "Да",
+              "joke": "Если вы так уверены...",
+              "point": 2,
+              "nextQuestionID": 3,
+              "right": true
+            },
+            {
+              "text": "Нет",
+              "joke": "Самостоятельность - это хорошо!",
+              "point": 0,
+              "nextQuestionID": 3,
+              "right": true
+            }
+          ],
+          "resultName": "four"
         }
       ]
     }

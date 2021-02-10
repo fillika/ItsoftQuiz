@@ -19,9 +19,6 @@ function renderQuestion(state: TState) {
   const { questions, currentQuestionId, stage } = state;
   const currentQuestion = questions.filter(({ id }) => id === currentQuestionId);
 
-  console.log(currentQuestion);
-  
-
   /**
    * Отдельно создать в state переменную для анимации, не ориентируясь на select
    */

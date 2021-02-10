@@ -19,9 +19,9 @@ export default function createReactApp(
   element: HTMLElement | null,
   resultCb: (result: number, branch?: string | undefined) => string
 ) {
-  const store = customCreateStore();
-
   if (!element) return;
+  
+  const store = customCreateStore();
 
   const showTest = element.getAttribute('data-show');
 

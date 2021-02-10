@@ -6,8 +6,6 @@ const Result: FC = () => {
   const dispatch = useDispatch();
   const { result, resultCB, resultName } = useSelector((state: TState) => state);
 
-  console.log(resultName);
-
   return (
     <div className='animate'>
       <header className='quiz-body__header'>

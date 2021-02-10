@@ -80,22 +80,47 @@ function showResultTarif(result: number, branch: string | undefined): string {
         message =
           'Современные ОС на Linux довольно требовательные, например, для  Centos 8 или выше мы рекомендуем Виртуальный сервер 2/2/48 HDD за 1300 руб./мес., но можно установить Centos 7 и взять Виртуальный сервер 1/1/32 HDD за 650 руб./мес., решать вам!';
       }
-      return message;
+      break;
     case 'second':
       if (result <= 3) {
-        message = 'Рекомендуем тариф Cloud Standart за 950 руб./мес.';
+        message = 'Рекомендуем тариф Cloud Standart за&nbsp;950 руб./мес.';
       } else if (result >= 4 && result <= 5) {
         message = 'Рекомендуем тариф Cloud Optimal за 1 900 руб./мес.';
       } else if (result >= 6 && result <= 10) {
         message = 'Рекомендуем тариф Cloud Maximum за 2 800 руб./мес.';
       } else {
         message =
-          'Рекомендуем рассмотреть аренду физического сервера, с тарифами вы можете ознакомиться <a href="/data-center/dedicated/" target="_blank">тут</a>. Но если Виртуальный сервер принципиален - попробуйте тариф Cloud Ultra за 5 600 руб./мес';
+          'Рекомендуем рассмотреть аренду физического сервера, с&nbsp;тарифами вы&nbsp;можете ознакомиться <a href="/data-center/dedicated/" target="_blank">тут</a>. Но если Виртуальный сервер принципиален - попробуйте тариф Cloud Ultra за 5 600 руб./мес';
       }
-      return message;
-
+      break;
+    case 'third':
+      if (result <= 3) {
+        message =
+          'Рекомендуем тариф Cloud Optimal за&nbsp;1&nbsp;900 руб./мес., не&nbsp;забудьте, что нужен Виртуальный сервер под базу данных&nbsp;&mdash; тариф по&nbsp;размеру базы.';
+      } else if (result >= 6 && result <= 11) {
+        message =
+          'Рекомендуем тариф Cloud Maximum за&nbsp;2&nbsp;800 руб./мес или Cloud Ultra за&nbsp;5&nbsp;600 руб./мес.&nbsp;в&nbsp;зависимости от&nbsp;размера базы данных.';
+      } else {
+        message =
+          'Рекомендуем рассмотреть аренду физического сервера, с&nbsp;тарифами вы&nbsp;можете ознакомиться <a href="/data-center/dedicated/" target="_blank">тут</a>';
+      }
+      break;
+    case 'four':
+      if (result === 1) {
+        message = 'Рекомендуем тариф Cloud Standart за&nbsp;950 руб./мес.';
+      } else if (result === 2) {
+        message =
+          'Виртуальный сервер в Российском дата-центре вам не подойдет, напишите нам и мы подберем тариф за рубежом.';
+      } else if (result === 3) {
+        message = 'Рекомендуем тариф Cloud Standart за&nbsp;950 руб./мес. + администрирование, напишите нам!';
+      } else {
+        message =
+          'Виртуальный сервер в&nbsp;Российском дата-центре вам не&nbsp;подойдет, напишите нам и&nbsp;мы&nbsp;подберем тариф за&nbsp;рубежом и&nbsp;обсудим тариф на&nbsp;администрирование.';
+      }
+      break;
     default:
-      return '';
+      message = 'Поздравляем. Вы прошли тест';
   }
-  return '';
+
+  return message;
 }
