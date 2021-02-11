@@ -9,12 +9,11 @@ const ShareInSocialMedia: FC = () => {
     <div className='animate'>
       <header className='quiz-body__header'>
         <div className='ta-right'>
-          <a
+          <button
             onClick={() => dispatch({ type: CHANGE_STAGE, stage: 'result' })}
-            href='#'
             className='quiz-link quiz-link--share'>
             Вернуться к результатам
-          </a>
+          </button>
         </div>
         <p className='quiz__question ta-center'>Поделиться с друзьями и коллегами</p>
       </header>

@@ -59,20 +59,18 @@ const Result: FC = () => {
           <button className='order-button quiz__order-button js-fill-order-form'>Связаться с нами</button>
         </div>
         <div>
-          <a
+          <button
             onClick={() => dispatch({ type: CHANGE_STAGE, stage: 'socialMedia' })}
-            href='#'
             className='quiz-link quiz-link--share'>
             Хотите поделиться результатами?
-          </a>
+          </button>
         </div>
         <div>
-          <a
+          <button
             onClick={() => dispatch({ type: RELOAD_TEST, value: false })}
-            href='#'
             className='quiz-link quiz-link--share'>
             Пройти тест заново
-          </a>
+          </button>
         </div>
       </div>
     </div>

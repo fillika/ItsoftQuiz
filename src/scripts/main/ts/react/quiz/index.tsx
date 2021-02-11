@@ -1,5 +1,7 @@
 import createReactApp from './createReactApp';
 
+const testsUrl = 'http://developer.itsft.ru/phpServer/quizQuestions.php';
+
 export type TQuiestion = {
   id: number;
   question: string;
@@ -17,19 +19,22 @@ export type TAnswer = {
 
 const testsArray = [
   {
-    url: '/src/data/operating_system.json',
+    url: testsUrl,
+    testID: 'operatingSystem',
     selector: '#test_1',
   },
   {
-    url: '/src/data/colocation.json',
+    url: testsUrl,
+    testID: 'colocationOne',
     selector: '#colocation-test1',
   },
   {
-    url: '/src/data/tarif.json',
+    url: testsUrl,
+    testID: 'tarifs',
     selector: '#test_2',
   },
 ];
 
-testsArray.forEach(({ url, selector }) => {
-  createReactApp(url, document.querySelector(selector));
+testsArray.forEach(({ url, testID, selector }) => {
+  createReactApp(url, testID, document.querySelector(selector));
 });

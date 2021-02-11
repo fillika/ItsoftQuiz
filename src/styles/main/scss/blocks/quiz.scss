@@ -24,6 +24,7 @@
   background-color: #ebebec;
   padding: 1.5em;
   overflow: hidden;
+  min-height: 390px;
 }
 
 .quiz__title {
@@ -37,15 +38,6 @@
 
 .quiz__head-button:focus {
   outline: none;
-}
-
-.quiz--close .quiz-body {
-  max-height: 0;
-  padding: 0 1.5em;
-}
-
-.quiz--open .quiz-body {
-  max-height: 60em;
 }
 
 .quiz__final-msg {
@@ -397,14 +389,6 @@
 }
 
 @media screen and (min-width: 768px) {
-  .quiz-body__header {
-  }
-
-  .quiz-body__answer-container {
-    padding-top: 30px;
-    min-height: 350px;
-  }
-
   .quiz-social {
     flex-direction: row;
   }

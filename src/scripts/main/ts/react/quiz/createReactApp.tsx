@@ -8,33 +8,27 @@ import { RELOAD_TEST, TState } from '../../redux/reducer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TQuiestion } from '.';
 
-type AppType = {
-  url: string;
-};
 
 export type TResponse = {
-  questions: TQuiestion[],
-  testID: string,
-  title: string,
+  questions: TQuiestion[];
+  testID: string;
+  title: string;
 };
 
-export default function createReactApp(
-  url: string,
-  element: HTMLElement | null,
-) {
+export default function createReactApp(url: string, testID: string, element: HTMLElement | null) {
   if (!element) return;
-  
+
   const store = customCreateStore();
 
   const showTest = element.getAttribute('data-show');
 
-  const App: React.FC<AppType> = ({ url }) => {
+  const App: React.FC = () => {
     const { testIsHide, questions } = useSelector((state: TState) => state);
     const dispatch = useDispatch();
 
     useEffect(() => {
       const start = async (): Promise<void> => {
-        const result = await getQuestions(url);
+        const result = await getQuestions(url, testID);
 
         dispatch({ type: 'GET_QUESTION', response: result });
 
@@ -51,7 +45,7 @@ export default function createReactApp(
     }
 
     return (
-      <div className='quiz js-quiz-test quiz--open'>
+      <div className='quiz js-quiz-test'>
         <div className='quiz__wrapper js-quiz-wrapper is-active'>
           <Header />
           <AnimatePresence initial={false}>
@@ -77,14 +71,17 @@ export default function createReactApp(
 
   ReactDOM.render(
     <Provider store={store}>
-      <App url={url} />
+      <App />
     </Provider>,
     element
   );
 }
 
-async function getQuestions(url: string): Promise<TResponse | undefined> {
-  return await fetch(url).then(response => {
+async function getQuestions(url: string, testID: string): Promise<TResponse | undefined> {
+  return await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({ testID: testID }),
+  }).then(response => {
     if (response.status === 200) {
       return response.json();
     } else {
