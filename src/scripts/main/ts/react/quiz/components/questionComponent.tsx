@@ -1,16 +1,15 @@
 import React, { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TAnswer, TQuiestion } from '..';
-import { CHANGE_STAGE, TState, LOAD_NEW_QUESTIONS, SET_RESULT_NAME } from '../../../redux/reducer';
+import { CHANGE_STAGE, TState, LOAD_NEW_QUESTIONS } from '../../../redux/reducer';
 import AnswerItem from './answerItem';
 
 type TQuestionComponent = {
   question: string | TQuiestion[];
   answers: TAnswer[];
-  resultName?: string | undefined;
 };
 
-const QuestionComponent: FC<TQuestionComponent> = ({ question, answers, resultName }) => {
+const QuestionComponent: FC<TQuestionComponent> = ({ question, answers }) => {
   const { questions, currentQuestionId, nextQuestionID, selected } = useSelector((state: TState) => state);
   const dispatch = useDispatch();
 
@@ -26,14 +25,8 @@ const QuestionComponent: FC<TQuestionComponent> = ({ question, answers, resultNa
       const [newQuestion] = questions.filter(({ id }) => id === nextQuestionID);
 
       if (Array.isArray(newQuestion?.question)) {
-        dispatch({ type: LOAD_NEW_QUESTIONS, value: newQuestion.question });
+        dispatch({ type: LOAD_NEW_QUESTIONS, value: newQuestion });
         dispatch({ type: 'NEXT_QUESTION' });
-        return;
-      }
-
-      if (resultName) {
-        dispatch({ type: CHANGE_STAGE, stage: 'congratulation' });
-        dispatch({ type: SET_RESULT_NAME, value: resultName });
         return;
       }
 

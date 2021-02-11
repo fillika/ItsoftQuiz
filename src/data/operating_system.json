@@ -1,5 +1,6 @@
 {
   "title": "Какую ОС выбрать для установки на виртуальный сервер?",
+  "testID": "operatingSystem",
   "questions": [
     {
       "id": 1,

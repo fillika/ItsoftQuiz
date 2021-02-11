@@ -1,5 +1,6 @@
 {
   "title": "Какой тариф VDS выбрать?",
+  "testID": "tarifs",
   "questions": [
     {
       "id": 1,
@@ -37,6 +38,7 @@
     },
     {
       "id": 100,
+      "testID": "tarifsOne",
       "question": [
         {
           "id": 1,
@@ -56,13 +58,13 @@
               "nextQuestionID": 2,
               "right": true
             }
-          ],
-          "resultName": "first"
+          ]
         }
       ]
     },
     {
       "id": 200,
+      "testID": "tarifsTwo",
       "question": [
         {
           "id": 1,
@@ -171,13 +173,13 @@
               "nextQuestionID": 4,
               "right": true
             }
-          ],
-          "resultName": "second"
+          ]
         }
       ]
     },
     {
       "id": 300,
+      "testID": "tarifsThree",
       "question": [
         {
           "id": 1,
@@ -224,13 +226,13 @@
               "nextQuestionID": 3,
               "right": true
             }
-          ],
-          "resultName": "third"
+          ]
         }
       ]
     },
     {
       "id": 400,
+      "testID": "tarifsFour",
       "question": [
         {
           "id": 1,
@@ -270,8 +272,7 @@
               "nextQuestionID": 3,
               "right": true
             }
-          ],
-          "resultName": "four"
+          ]
         }
       ]
     }

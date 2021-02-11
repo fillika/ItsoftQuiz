@@ -12,12 +12,15 @@ type AppType = {
   url: string;
 };
 
-type TResponse = TQuiestion[];
+export type TResponse = {
+  questions: TQuiestion[],
+  testID: string,
+  title: string,
+};
 
 export default function createReactApp(
   url: string,
   element: HTMLElement | null,
-  resultCb: (result: number, branch?: string | undefined) => string
 ) {
   if (!element) return;
   
@@ -32,8 +35,8 @@ export default function createReactApp(
     useEffect(() => {
       const start = async (): Promise<void> => {
         const result = await getQuestions(url);
-        dispatch({ type: 'GET_QUESTION', value: result });
-        dispatch({ type: 'SET_RESULT_CB', value: resultCb });
+
+        dispatch({ type: 'GET_QUESTION', response: result });
 
         if (showTest) {
           dispatch({ type: RELOAD_TEST, value: false });

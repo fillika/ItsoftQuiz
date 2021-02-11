@@ -32,9 +32,9 @@ function renderQuestion(state: TState) {
       return <ShareInSocialMedia />;
     default:
       if (currentQuestion.length) {
-        const { question, answers, resultName } = currentQuestion[0];
+        const { question, answers } = currentQuestion[0];
 
-        return <QuestionComponent resultName={resultName} question={question} answers={answers} />;
+        return <QuestionComponent question={question} answers={answers} />;
       }
   }
 }

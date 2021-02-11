@@ -1,9 +1,9 @@
 import { TQuiestion } from "../react/quiz";
+import { TResponse } from "../react/quiz/createReactApp";
 
 export const RELOAD_TEST = 'RELOAD_TEST',
   CHANGE_STAGE = 'CHANGE_STAGE',
   LOAD_NEW_QUESTIONS = 'LOAD_NEW_QUESTIONS',
-  SET_RESULT_NAME = 'SET_RESULT_NAME',
   SHOW_RESULT = 'SHOW_RESULT';
 
 export type TState = {
@@ -16,14 +16,14 @@ export type TState = {
   selected: boolean;
   stage: 'congratulation' | 'result' | 'socialMedia' | null;
   testIsHide: boolean;
-  resultCB: null | ((result: number, resultName?: string | undefined) => string);
-  resultName?: string | undefined;
+  testID: string | null;
 };
 
 type TAction = {
   type: string;
   value?: any;
   stage?: 'congratulation' | 'result' | 'socialMedia' | null;
+  response?: TResponse;
 };
 
 const initialState: TState = {
@@ -36,8 +36,7 @@ const initialState: TState = {
   selected: false,
   stage: null,
   testIsHide: true,
-  resultCB: null,
-  resultName: undefined,
+  testID: null
 };
 
 export default function reducer(state: TState = initialState, action: TAction): any {
@@ -45,25 +44,17 @@ export default function reducer(state: TState = initialState, action: TAction): 
     case 'GET_QUESTION':
       return {
         ...state,
-        questionsInitial: action.value ? action.value.questions : [],
-        questions: action.value ? action.value.questions : [],
-        title: action.value ? action.value.title : '',
+        questionsInitial: action.response ? action.response.questions : [],
+        questions: action.response ? action.response.questions : [],
+        title: action.response ? action.response.title : '',
+        testID: action.response ? action.response.testID : '',
       };
     case LOAD_NEW_QUESTIONS:
       return {
         ...state,
-        questions: action.value,
+        questions: action.value.question,
+        testID: action.value.testID,
         nextQuestionID: 1
-      };
-    case SET_RESULT_NAME:
-      return {
-        ...state,
-        resultName: action.value
-      };
-    case 'SET_RESULT_CB':
-      return {
-        ...state,
-        resultCB: action.value,
       };
     case 'CHANGE_SELECTED':
       return {
