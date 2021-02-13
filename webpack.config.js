@@ -15,7 +15,6 @@ fs.readdirSync(testFolder).forEach(file => {
   if (file) {
     entry[file] = [
       path.resolve(__dirname, `./src/entryPoints/${file}/index.ts`),
-      path.resolve(__dirname, `./src/entryPoints/${file}/index.scss`),
     ]
   }
 });
@@ -75,7 +74,10 @@ module.exports = {
     minimize: isDev ? false : true,
     removeAvailableModules: false,
     removeEmptyChunks: false,
-    splitChunks: false,
+    splitChunks: isDev ? false : {
+      chunks: 'all',
+      name: 'libs'
+    },
     minimizer: [
       new CssMinimizerPlugin(),
       new TerserPlugin()
