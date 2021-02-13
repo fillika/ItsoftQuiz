@@ -75,8 +75,20 @@ module.exports = {
     removeAvailableModules: false,
     removeEmptyChunks: false,
     splitChunks: isDev ? false : {
-      chunks: 'all',
-      name: 'libs'
+      cacheGroups: {
+        react: {
+          test: /[\\/]node_modules[\\/](react|react-dom|react-redux|redux|framer-motion)[\\/]/,
+          name: "react",
+          chunks: 'all',
+          filename: 'libs/react.libs.min.js',
+        },
+        lodash: {
+          test: /[\\/]node_modules[\\/](lodash)[\\/]/,
+          name: "lodash",
+          chunks: 'all',
+          filename: 'libs/lodash.libs.min.js',
+        }
+      }
     },
     minimizer: [
       new CssMinimizerPlugin(),
