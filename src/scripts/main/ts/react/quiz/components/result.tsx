@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CHANGE_STAGE, RELOAD_TEST, TState } from '../../../redux/reducer';
+import { CHANGE_STAGE, RELOAD_TEST, TState } from '../redux/reducer';
+import { getTestResult } from '../utils/API';
 
 type resultType = {
   message: string;
@@ -16,31 +17,27 @@ const Result: FC = () => {
     const postData = async (): Promise<void> => {
       const url = 'http://developer.itsft.ru/phpServer/quizResult.php';
 
-      const response = await fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        referrerPolicy: 'no-referrer', // no-referrer, *client
-        // headers: {
-        //     'Content-Type': 'application/json'
-        // },
-        body: JSON.stringify({
-          id: testID,
-          result: result,
-        }), // body data type must match "Content-Type" header
-      });
-
+      const response = await getTestResult(url, testID, result);
       const { message, status }: resultType = await response.json();
 
       if (!status) {
-        setFinalMessage('Ooooooopss. Something went\'s wrong');
+        setFinalMessage("Ooooooopss. Something went's wrong");
       } else {
+        sessionStorage.setItem(testID!, message);
         setFinalMessage(message);
       }
     };
 
-    postData();
+    if (testID) {
+      const answerFromSS = sessionStorage.getItem(testID);
+
+      if (answerFromSS) {
+        setFinalMessage(answerFromSS);
+      } else {
+        postData();
+      }
+    }
+
     return () => {};
   }, []);
 
@@ -58,6 +55,7 @@ const Result: FC = () => {
         <div>
           <button className='order-button quiz__order-button js-fill-order-form'>Связаться с нами</button>
         </div>
+
         <div>
           <button
             onClick={() => dispatch({ type: CHANGE_STAGE, stage: 'socialMedia' })}
@@ -65,10 +63,9 @@ const Result: FC = () => {
             Хотите поделиться результатами?
           </button>
         </div>
+
         <div>
-          <button
-            onClick={() => dispatch({ type: RELOAD_TEST, value: false })}
-            className='quiz-link quiz-link--share'>
+          <button onClick={() => dispatch({ type: RELOAD_TEST, value: false })} className='quiz-link quiz-link--share'>
             Пройти тест заново
           </button>
         </div>

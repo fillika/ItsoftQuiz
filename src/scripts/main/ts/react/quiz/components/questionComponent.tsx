@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TAnswer, TQuiestion } from '..';
-import { CHANGE_STAGE, TState, LOAD_NEW_QUESTIONS } from '../../../redux/reducer';
+import { CHANGE_STAGE, TState, LOAD_NEW_QUESTIONS } from '../redux/reducer';
 import AnswerItem from './answerItem';
 
 type TQuestionComponent = {
@@ -20,10 +20,10 @@ const QuestionComponent: FC<TQuestionComponent> = ({ question, answers }) => {
   function nextQuestion() {
     if (selected) {
       // Тут сложная логика. У меня внутри вопроса вместо строки новый массив с вопросом.
-      // Поэтому Я проверяю, массив или строка и если массив, то переопределяю state
-      // newQuestion - Это объект.
+      // Я либо получаю вопрос (всегда 1), либо массив новых вопросов
       const [newQuestion] = questions.filter(({ id }) => id === nextQuestionID);
-
+      
+      // Поэтому Я проверяю, массив или строка и если массив, то переопределяю state новыми вопросами
       if (Array.isArray(newQuestion?.question)) {
         dispatch({ type: LOAD_NEW_QUESTIONS, value: newQuestion });
         dispatch({ type: 'NEXT_QUESTION' });

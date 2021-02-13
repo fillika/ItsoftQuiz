@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { TState } from '../../../redux/reducer';
+import { TState } from '../redux/reducer';
 import CongratsComponent from './conrgatsComponent';
 import QuestionComponent from './questionComponent';
 import Result from './result';
@@ -20,9 +20,9 @@ function renderQuestion(state: TState) {
   const currentQuestion = questions.filter(({ id }) => id === currentQuestionId);
 
   /**
-   * Отдельно создать в state переменную для анимации, не ориентируясь на select
+   * There are routing for component's
+   * depends on stage
    */
-
   switch (stage) {
     case 'congratulation':
       return <CongratsComponent />;

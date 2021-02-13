@@ -31,7 +31,9 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      dry: true,
+    }),
     new MiniCssExtractPlugin({
       filename: '[name]/[name].min.css',
     }),

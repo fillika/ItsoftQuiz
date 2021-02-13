@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import customCreateStore from '../../store';
+import customCreateStore from './store';
 import Header from './components/header';
 import Body from './components/body';
-import { RELOAD_TEST, TState } from '../../redux/reducer';
+import { RELOAD_TEST, TState } from './redux/reducer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TQuiestion } from '.';
-
+import { getQuestions } from './utils/API';
 
 export type TResponse = {
   questions: TQuiestion[];
@@ -15,12 +15,15 @@ export type TResponse = {
   title: string;
 };
 
-export default function createReactApp(url: string, testID: string, element: HTMLElement | null) {
-  if (!element) return;
-
+export default function createReactApp(url: string, element: HTMLElement) {
   const store = customCreateStore();
-
   const showTest = element.getAttribute('data-show');
+  const testID = element.getAttribute('data-test-id');
+
+  if (testID === null) {
+    console.warn('Please, add "data-test-id" attribute for:', element);
+    return;
+  }
 
   const App: React.FC = () => {
     const { testIsHide, questions } = useSelector((state: TState) => state);
@@ -77,17 +80,3 @@ export default function createReactApp(url: string, testID: string, element: HTM
   );
 }
 
-async function getQuestions(url: string, testID: string): Promise<TResponse | undefined> {
-  return await fetch(url, {
-    method: 'POST',
-    body: JSON.stringify({ testID: testID }),
-  }).then(response => {
-    if (response.status === 200) {
-      return response.json();
-    } else {
-      console.warn(`Fetch error for url`, url);
-      console.warn(`Fetch error. Status`, response.status);
-      return undefined;
-    }
-  });
-}

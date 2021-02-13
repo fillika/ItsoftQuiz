@@ -1,5 +1,5 @@
-import { TQuiestion } from "../react/quiz";
-import { TResponse } from "../react/quiz/createReactApp";
+import { TQuiestion } from "..";
+import { TResponse } from "../createReactApp";
 
 export const RELOAD_TEST = 'RELOAD_TEST',
   CHANGE_STAGE = 'CHANGE_STAGE',
@@ -83,6 +83,11 @@ export default function reducer(state: TState = initialState, action: TAction): 
         result: state.result + action.value,
       };
     case RELOAD_TEST:
+      /**
+       * Так как повторный запуск теста может давать другие результаты, то Я очищаю
+       * sessionStorage, чтобы с сервера мы могли записать другой результат.
+       */
+      sessionStorage.clear();
       return {
         ...state,
         questions: state.questionsInitial,
