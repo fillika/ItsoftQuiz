@@ -42,7 +42,7 @@ const Result: FC = () => {
   }, []);
 
   return (
-    <div className='animate'>
+    <div className='animation animation--opacity'>
       <header className='quiz-body__header'>
         <p className='quiz__question'>Ваш результат:</p>
       </header>

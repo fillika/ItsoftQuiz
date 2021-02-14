@@ -1,5 +1,5 @@
 @import 'variables';
-@import 'prefix';
+@import 'mixins';
 @import 'animations';
 @import './blocks/quiz';
 
@@ -9,4 +9,10 @@
 
 li {
   margin-bottom: 15px;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
 }

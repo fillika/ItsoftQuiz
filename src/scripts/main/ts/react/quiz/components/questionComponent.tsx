@@ -14,8 +14,8 @@ const QuestionComponent: FC<TQuestionComponent> = ({ question, answers }) => {
   const dispatch = useDispatch();
 
   const bodyClassName = !selected
-    ? 'quiz-question quiz-question--active animate'
-    : 'quiz-question quiz-question--active';
+    ? 'quiz-question animation animation--opacity'
+    : 'quiz-question';
 
   function nextQuestion() {
     if (selected) {

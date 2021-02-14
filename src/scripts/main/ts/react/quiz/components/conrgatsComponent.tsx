@@ -6,7 +6,7 @@ const CongratsComponent: FC = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className='quiz-body__answer-container animate'>
+    <div className='quiz-body__answer-container animation animation--opacity'>
       <div className='quiz__final-msg'>
         <h2>Отлично, вы&nbsp;прошли тест!</h2>
         <div className='quiz__final-msg-image'>

@@ -1,3 +1,20 @@
+.animation {
+  animation-duration: $mainAnimationDur;
+  transition: $mainAnimationDur;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+
+  @include reduceMotion {
+    animation-duration: none;
+    transition: none;
+  }
+}
+
+.animation--opacity {
+  animation-name: fadeOut;
+  animation-timing-function: $cubric-bezier-1;
+}
+
 @keyframes isActive {
   0% {
     white-space: nowrap;
@@ -10,8 +27,71 @@
 }
 
 @keyframes opacity {
+  from {
+    padding-right: 20px;
+  }
   to {
     color: rgba(255, 255, 255, 1);
     padding-right: 20px;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes showSubtitle {
+  from {
+    width: 0;
+    padding-right: 0;
+    padding-left: 0;
+    white-space: nowrap;
+  }
+  to {
+    width: 100%;
+    white-space: normal;
+    padding-right: 1em;
+    padding-left: 3.5em;
+  }
+}
+
+@keyframes showSubtitleText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  @keyframes showSubtitle {
+    from {
+      width: 0;
+      padding-right: 0;
+      padding-left: 0;
+      white-space: nowrap;
+    }
+    to {
+      width: 70%;
+      padding-right: 1em;
+      padding-left: 3.5em;
+      white-space: normal;
+    }
+  }
+}
+
+@keyframes needAnswer {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
   }
 }

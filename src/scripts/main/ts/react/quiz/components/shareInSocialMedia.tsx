@@ -11,7 +11,7 @@ const ShareInSocialMedia: FC = () => {
   }
 
   return (
-    <div className='animate'>
+    <div className='animation animation--opacity'>
       <header className='quiz-body__header'>
         <div className='ta-right'>
           <button onClick={backToResult} className='quiz-link quiz-link--share'>

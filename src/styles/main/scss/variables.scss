@@ -1,1 +1,23 @@
+:root {
+  --color-pink: #fcdcd3;
+  --main-orange-color: #f05023;
+  --main-blue-color: #0c5a98;
+}
+
+// breakpoints
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
+// height
+$height-quiz-body: 300px;
+$height-answer-mobile: 60px;
 $height-answer-desktop: 76px;
+
+// animation
+$mainAnimationDur: 225ms;
+$shortAnimationDur: 150ms;
+$delay: $mainAnimationDur + 150ms;
+$cubric-bezier-1: cubic-bezier(0.4, 0, 0.6, 1);
