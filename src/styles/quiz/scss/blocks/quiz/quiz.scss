@@ -1,0 +1,90 @@
+// local variables
+
+.quiz {
+  &__head-title {
+    background-color: #ebebec;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1em 1.5em;
+    margin-bottom: 10px;
+
+    @include above($lg) {
+      align-items: center;
+    }
+  }
+
+  &__title {
+    width: 100%;
+    margin-bottom: 20px;
+
+    @include above($lg) {
+      margin-bottom: 0;
+      width: 560px;
+    }
+  }
+
+  &__head-button {
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+
+    @include above(425px) {
+      width: 240px;
+    }
+  }
+
+  &__order-button {
+    display: block;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin: 0 auto;
+
+    @include above(425px) {
+      width: 240px;
+    }
+  }
+
+  &__final-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-bottom: 1.5em;
+  }
+
+  &__final-msg-image {
+    margin-left: 1em;
+  }
+
+  &__wrapper {
+    padding-top: 15px;
+
+    &.is-active {
+      animation: fadeOut 300ms cubic-bezier(0.4, 0, 0.6, 1);
+    }
+  }
+
+  &__question {
+    margin: 0;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 0.4em 0;
+    line-height: 1.15em;
+    color: #1b1b1b;
+
+    @include above($md) {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    @include above($lg) {
+      margin: 0;
+      padding: 0;
+      font-size: 48px;
+    }
+  }
+}

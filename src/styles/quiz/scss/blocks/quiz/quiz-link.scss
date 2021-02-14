@@ -1,0 +1,14 @@
+.quiz-link {
+  display: inline-block;
+  color: var(--main-blue-color);
+
+  &:visited {
+    display: inline-block;
+    color: var(--main-blue-color);
+  }
+
+  &--share {
+    margin-top: 15px;
+    text-decoration: underline;
+  }
+}

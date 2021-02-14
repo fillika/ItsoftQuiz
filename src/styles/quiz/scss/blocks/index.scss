@@ -1,0 +1,10 @@
+$gradientTriangleBLue: linear-gradient(45deg, #d6d5d5, #d6d5d5 50.1%, var(--main-blue-color) 50%);
+$gradientTriangleOrange: linear-gradient(45deg, #d6d5d5, #d6d5d5 50.1%, var(--main-orange-color) 50%);
+$gradientBlue: linear-gradient(to right, #d6d5d5 10px, var(--main-blue-color) 4%);
+$gradientOrange: linear-gradient(to right, #d6d5d5 10px, var(--main-orange-color) 4%);
+
+@import './quiz/quiz';
+@import './quiz/quiz-body';
+@import './quiz/answer';
+@import './quiz/quiz-social';
+@import './quiz/quiz-link';

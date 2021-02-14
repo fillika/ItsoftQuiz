@@ -1,0 +1,30 @@
+@import 'variables';
+@import 'mixins';
+@import 'animations';
+@import './blocks/index';
+
+* {
+  box-sizing: border-box;
+}
+
+li {
+  margin-bottom: 15px;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.order-button {
+  padding: 11px 16px;
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--main-orange-color);
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
