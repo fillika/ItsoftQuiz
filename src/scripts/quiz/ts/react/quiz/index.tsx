@@ -1,6 +1,7 @@
 import createReactApp from './createReactApp';
 
-const testsUrl = 'http://developer.itsft.ru/phpServer/quizQuestions.php';
+// const testsUrl = 'http://developer.itsft.ru/phpServer/quizQuestions.php';
+const testsUrl = '/include/testQuiz/phpServer/quizQuestions.php';
 
 export type TQuiestion = {
   id: number;
@@ -15,6 +16,7 @@ export type TAnswer = {
   point: number;
   nextQuestionID: number;
   right: boolean;
+  isSelected: boolean;
 };
 
 const allQuizes: NodeListOf<HTMLElement> = document.querySelectorAll('.js-quiz');

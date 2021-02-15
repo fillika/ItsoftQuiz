@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TAnswer, TQuiestion } from '..';
 import { CHANGE_STAGE, TState, LOAD_NEW_QUESTIONS } from '../redux/reducer';
@@ -10,19 +10,18 @@ type TQuestionComponent = {
 };
 
 const QuestionComponent: FC<TQuestionComponent> = ({ question, answers }) => {
+  const [isSelected, setSelected] = useState<boolean>(false);
   const { questions, currentQuestionId, nextQuestionID, selected } = useSelector((state: TState) => state);
   const dispatch = useDispatch();
 
-  const bodyClassName = !selected
-    ? 'quiz-question animation animation--opacity'
-    : 'quiz-question';
+  const bodyClassName = !selected ? 'quiz-question animation animation--opacity' : 'quiz-question';
 
   function nextQuestion() {
     if (selected) {
       // Тут сложная логика. У меня внутри вопроса вместо строки новый массив с вопросом.
       // Я либо получаю вопрос (всегда 1), либо массив новых вопросов
       const [newQuestion] = questions.filter(({ id }) => id === nextQuestionID);
-      
+
       // Поэтому Я проверяю, массив или строка и если массив, то переопределяю state новыми вопросами
       if (Array.isArray(newQuestion?.question)) {
         dispatch({ type: LOAD_NEW_QUESTIONS, value: newQuestion });
@@ -35,6 +34,13 @@ const QuestionComponent: FC<TQuestionComponent> = ({ question, answers }) => {
       } else {
         dispatch({ type: 'NEXT_QUESTION' });
       }
+    } else {
+      setSelected(true);
+
+      const timeoutID = setTimeout(() => {
+        setSelected(false);
+        clearTimeout(timeoutID);
+      }, 300);
     }
   }
 
@@ -53,7 +59,7 @@ const QuestionComponent: FC<TQuestionComponent> = ({ question, answers }) => {
           <div className='quiz-body__answer-container'>
             <ul className='quiz-body__answers-list'>
               {answers.map((answer, index) => (
-                <AnswerItem {...answer} key={index} />
+                <AnswerItem {...answer} key={index} isSelected={isSelected} />
               ))}
             </ul>
 

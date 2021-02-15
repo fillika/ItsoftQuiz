@@ -28,3 +28,10 @@ button {
   transition: background-color 0.3s;
   white-space: nowrap;
 }
+
+// ! Временные стили
+.js-quiz {
+  .quiz-question {
+    display: block;
+  }
+}

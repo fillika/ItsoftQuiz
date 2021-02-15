@@ -15,6 +15,11 @@
   animation-timing-function: $cubric-bezier-1;
 }
 
+.animation--zoom {
+  animation-name: zoom;
+  animation-timing-function: linear;
+}
+
 @keyframes isActive {
   0% {
     white-space: nowrap;
@@ -42,6 +47,15 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes zoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
   }
 }
 

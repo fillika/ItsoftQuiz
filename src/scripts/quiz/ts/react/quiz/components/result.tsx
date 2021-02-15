@@ -15,7 +15,8 @@ const Result: FC = () => {
 
   useEffect(() => {
     const postData = async (): Promise<void> => {
-      const url = 'http://developer.itsft.ru/phpServer/quizResult.php';
+      // const url = 'http://developer.itsft.ru/phpServer/quizResult.php';
+      const url = '/include/testQuiz/phpServer/quizResult.php';
 
       const response = await getTestResult(url, testID, result);
       const { message, status }: resultType = await response.json();
@@ -53,7 +54,13 @@ const Result: FC = () => {
         />
 
         <div>
-          <button className='order-button quiz__order-button js-fill-order-form'>Связаться с нами</button>
+          <button
+            onClick={() => dispatch({ type: RELOAD_TEST, value: false })}
+            data-theme='Я прошел тест'
+            data-config='Напишите ваш вопрос...'
+            className='order-button quiz__order-button js-fill-order-form js-quiz-fill-order'>
+            Связаться с нами
+          </button>
         </div>
 
         <div>

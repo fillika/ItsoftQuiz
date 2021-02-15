@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TState } from '../redux/reducer';
 import { TAnswer } from '../index';
 
-const AnswerItem: FC<TAnswer> = ({ text, joke, point, nextQuestionID, right }: TAnswer) => {
+const AnswerItem: FC<TAnswer> = ({ text, joke, point, nextQuestionID, right, isSelected }: TAnswer) => {
   const { selected } = useSelector((state: TState) => state);
   const [isActive, setActive] = useState(selected);
   const dispatch = useDispatch();
 
-  const rightOrWrongClassName = right ? 'answer__joke' : 'answer__joke answer__joke--wrong'
+  const rightOrWrongClassName = right ? 'answer__joke' : 'answer__joke answer__joke--wrong';
   const animateClassName = isActive ? `${rightOrWrongClassName} animate` : `${rightOrWrongClassName}`;
+  const answerClassName = !isSelected ? 'answer' : 'answer animation animation--zoom';
 
   useEffect(() => {
     /**
@@ -33,7 +34,7 @@ const AnswerItem: FC<TAnswer> = ({ text, joke, point, nextQuestionID, right }: T
           dispatch({ type: 'SET_NEXT_QUESTION_ID', value: nextQuestionID });
         }
       }}
-      className='answer'>
+      className={answerClassName}>
       <div dangerouslySetInnerHTML={{ __html: text }} />
       <div className={animateClassName} dangerouslySetInnerHTML={{ __html: joke }} />
     </li>
